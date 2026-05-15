@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: var(--font-syne);
+  --font-body: var(--font-jakarta);
+  --color-bg: #F8FAFC;       /* Slate 50 - Crisp, cool off-white */
+  --color-border: #E2E8F0;   /* Slate 200 - Cool, light gray */
+  --color-muted: #64748B;    /* Slate 500 - Legible mid-gray */
+  --color-card: #FFFFFF;
+  --radius: 0.75rem;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: #0F172A;            /* Slate 900 - Deep cool navy/gray */
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+}
