@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               href="/"
               className="font-display font-bold text-sm tracking-tight hover:opacity-60 transition-opacity text-[#0F172A]"
             >
-              Affiq Mohammed
+   
             </Link>
             <div className="flex items-center gap-8">
               <div className="flex gap-8 text-[11px] font-semibold tracking-widest uppercase text-[#0F172A]">

@@ -5,22 +5,46 @@ import Link from "next/link";
 const skills = [
   {
     label: "Languages",
-    color: "#E8534A",
-    items: ["Python", "Java", "JavaScript", "TypeScript", "C++", "Swift", "Go"],
+    color: "#1b5a89",
+    items: [
+      { name: "Python", icon: "/icons/python.svg" },
+      { name: "Java", icon: "/icons/java.svg" },
+      { name: "JavaScript", icon: "/icons/javascript.svg" },
+      { name: "TypeScript", icon: "/icons/typescript.svg" },
+      { name: "C++", icon: "/icons/cpp.svg" },
+      { name: "Swift", icon: "/icons/swift.png" },
+      { name: "Go", icon: "/icons/go.png" }, 
+    ],
   },
   {
     label: "Frameworks & Libraries",
-    color: "#4CAF7D",
-    items: ["React.js", "Next.js", "Node.js", "Flask", "Express", "LangChain", "Tailwind CSS"],
+    color: "#38761d",
+    items: [
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "Next.js", icon: "/icons/nextjs.jpeg" },
+      { name: "Node.js", icon: "/icons/nodejs.png" },
+      { name: "Flask", icon: "/icons/flask.png" },
+      { name: "Express", icon: "/icons/express.png" },
+      { name: "LangChain", icon: "/icons/langchain.png" },
+      { name: "Tailwind CSS", icon: "/icons/tailwind.png" },
+    ],
   },
   {
     label: "Tools & Technologies",
-    color: "#7C6FCD",
-    items: ["Docker", "PostgreSQL", "MongoDB", "Supabase", "Prisma", "Prometheus", "Grafana", "GitHub Actions"],
+    color: "#cc0000",
+    items: [
+      { name: "Docker", icon: "/icons/docker.png" },
+      { name: "PostgreSQL", icon: "/icons/postgres.png" },
+      { name: "MongoDB", icon: "/icons/mongodb.svg" },
+      { name: "Supabase", icon: "/icons/supabase.jpg" },
+      { name: "Prisma", icon: "/icons/prisma.jpg" },
+      { name: "Prometheus", icon: "/icons/prom.png" }, 
+      { name: "Grafana", icon: "/icons/grafana.jpeg" }, 
+    ],
   },
 ];
 
-function SkillRow({ label, color, items }: { label: string; color: string; items: string[] }) {
+function SkillRow({ label, color, items }: { label: string; color: string; items: { name: string; icon: string | null }[] }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-border last:border-0">
@@ -46,10 +70,17 @@ function SkillRow({ label, color, items }: { label: string; color: string; items
         <div className="flex flex-wrap gap-2 pb-5">
           {items.map((skill) => (
             <span
-              key={skill}
-              className="px-3 py-1.5 border border-border rounded-full text-sm bg-white text-[#0F172A]"
+              key={skill.name}
+              className="flex items-center gap-2 px-3 py-1.5 border border-border rounded-full text-sm bg-white text-[#0F172A]"
             >
-              {skill}
+              {skill.icon && (
+                <img
+                  src={skill.icon}
+                  alt={`${skill.name} icon`}
+                  className="w-4 h-4 object-contain"
+                />
+              )}
+              {skill.name}
             </span>
           ))}
         </div>
@@ -74,7 +105,8 @@ export default function Home() {
             Computer Science · UT Dallas · May 2026
           </p>
           
-      
+
+          {/* Featured Project Replaces the Terminal */}
           <div className="max-w-[420px] border border-border rounded-xl bg-white overflow-hidden hover:shadow-sm transition-shadow">
             <div className="p-5 border-b border-border bg-[#F8FAFC]">
               <div className="flex justify-between items-start mb-3">

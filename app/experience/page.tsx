@@ -3,8 +3,19 @@ import { useState } from "react";
 
 const experiences = [
   {
+    role: "Technology Application Analyst",
+    company: "Citi",
+    logo: "/citi.png", 
+    period: "Starting July 2026",
+    location: "Irving, TX",
+    tags: ["Incoming"],
+    bullets: [
+      "Incoming Technology Analyst within the App Development track.",
+    ],
+  },
+  {
     role: "Site Reliability Engineer Fellow",
-    company: "Major League Hacking",
+    company: "Meta/Major League Hacking",
     logo: "/mlh.jpg",
     period: "June 2025 – August 2025",
     location: "Remote",
@@ -74,7 +85,10 @@ function ExperienceCard({
             className="w-11 h-11 object-contain rounded-lg border border-border shrink-0 bg-white"
           />
           <div>
-            <p className="font-display font-bold text-[15px] leading-snug">{role}</p>
+            {/* Added py-0.5 and leading-normal to stop Syne letters from clipping */}
+            <p className="font-display font-bold text-[15px] leading-normal py-0.5 text-[#0F172A]">
+              {role}
+            </p>
             <p className="text-sm text-muted">{company}</p>
           </div>
         </div>
@@ -86,7 +100,7 @@ function ExperienceCard({
           {hasDetails && (
             <button
               onClick={() => setOpen(!open)}
-              className="text-[11px] font-semibold tracking-wide border border-border rounded-full px-3 py-1.5 hover:border-[#111] transition-colors whitespace-nowrap"
+              className="text-[11px] font-semibold tracking-wide border border-border rounded-full px-3 py-1.5 hover:border-[#0F172A] transition-colors whitespace-nowrap text-[#0F172A]"
             >
               {open ? "Hide" : "Details"}
             </button>
@@ -99,7 +113,7 @@ function ExperienceCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 text-xs border border-border rounded-full text-[#444]"
+              className="px-2.5 py-1 text-xs border border-border rounded-full text-[#334155] bg-[#F8FAFC]"
             >
               {tag}
             </span>
@@ -108,14 +122,14 @@ function ExperienceCard({
       )}
 
       {open && (
-        <div className="border-t border-border px-5 py-4 bg-bg">
+        <div className="border-t border-border px-5 py-4 bg-[#F8FAFC]">
           <ol className="space-y-3">
             {bullets.map((b, i) => (
               <li key={i} className="flex gap-3 text-sm leading-relaxed">
                 <span className="text-muted font-mono text-xs mt-0.5 shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-[#222]">{b}</span>
+                <span className="text-[#334155]">{b}</span>
               </li>
             ))}
           </ol>
@@ -130,7 +144,7 @@ export default function ExperiencePage() {
     <div>
       <div className="flex items-baseline gap-4 mb-5">
         <span className="text-xs text-muted font-mono">02</span>
-        <h2 className="font-display font-bold text-4xl">Experience</h2>
+        <h2 className="font-display font-bold text-4xl text-[#0F172A]">Experience</h2>
       </div>
       <hr className="border-border mb-8" />
       <div className="space-y-3">

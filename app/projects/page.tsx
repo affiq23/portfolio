@@ -16,6 +16,19 @@ const projects = [
     demo: "http://lighthouse-2025.netlify.app",
   },
   {
+    title: "P2P File Sharing Network",
+    tech: ["Python", "TCP Sockets", "Multithreading", "P2P Architecture"],
+    description:
+      "A decentralized peer-to-peer file sharing system featuring a tracker for peer discovery and concurrent, multi-node chunk downloading.",
+    bullets: [
+      "Engineered a centralized TCP tracker server to manage active peer swarms, utilizing heartbeat timeouts to dynamically purge disconnected nodes",
+      "Developed a concurrent transfer engine using Python ThreadPoolExecutor to download 1024-byte file segments simultaneously from multiple peers",
+      "Implemented file integrity verification via MD5 hashing and state persistence to support pausing and resuming interrupted downloads",
+    ],
+    github: "https://github.com/affiq23/socket-programming",
+    demo: null,
+  },
+  {
     title: "Kvault",
     tech: ["React", "Node.js", "LangChain", "Supabase", "Commander.js", "PostgreSQL"],
     description:
@@ -66,16 +79,18 @@ function ProjectCard({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-border rounded-xl bg-white overflow-hidden transition-shadow hover:shadow-sm">
-      <div className="p-5">
+    <div className="h-full flex flex-col border border-border rounded-xl bg-white overflow-hidden transition-shadow hover:shadow-sm">
+      
+      {/* Top content wrapper with flex-grow to push the footer down */}
+      <div className="p-5 flex-grow">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="font-display font-bold text-xl">{title}</h3>
+          <h3 className="font-display font-bold text-xl text-[#0F172A]">{title}</h3>
           <div className="flex gap-2 shrink-0">
             <a
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 border border-border rounded-full text-xs font-semibold hover:border-[#111] transition-colors"
+              className="px-3 py-1.5 border border-border rounded-full text-[11px] font-semibold hover:border-[#0F172A] transition-colors text-[#0F172A]"
             >
               GitHub
             </a>
@@ -84,7 +99,7 @@ function ProjectCard({
                 href={demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 border border-[#111] rounded-full text-xs font-semibold bg-[#111] text-white hover:bg-[#333] transition-colors"
+                className="px-3 py-1.5 border border-[#0F172A] rounded-full text-[11px] font-semibold bg-[#0F172A] text-white hover:bg-[#334155] hover:border-[#334155] transition-colors"
               >
                 Live ↗
               </a>
@@ -92,13 +107,13 @@ function ProjectCard({
           </div>
         </div>
 
-        <p className="text-sm text-[#444] leading-relaxed mb-4">{description}</p>
+        <p className="text-sm text-[#334155] leading-relaxed mb-4">{description}</p>
 
         <div className="flex flex-wrap gap-2">
           {tech.map((t) => (
             <span
               key={t}
-              className="px-2.5 py-1 text-xs border border-border rounded-full text-[#555]"
+              className="px-2.5 py-1 text-[11px] font-medium border border-border rounded-full text-[#334155] bg-[#F8FAFC]"
             >
               {t}
             </span>
@@ -106,30 +121,33 @@ function ProjectCard({
         </div>
       </div>
 
-      <div className="border-t border-border px-5 py-3 flex justify-between items-center bg-[#FAFAF8]">
-        <span className="text-xs text-muted">{bullets.length} highlights</span>
-        <button
-          onClick={() => setOpen(!open)}
-          className="text-[11px] font-semibold tracking-wide hover:opacity-60 transition-opacity"
-        >
-          {open ? "Hide details −" : "Show details +"}
-        </button>
-      </div>
-
-      {open && (
-        <div className="border-t border-border px-5 py-4 bg-bg">
-          <ol className="space-y-3">
-            {bullets.map((b, i) => (
-              <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                <span className="text-muted font-mono text-xs mt-0.5 shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-[#222]">{b}</span>
-              </li>
-            ))}
-          </ol>
+      {/* Footer wrapper fixed to the bottom */}
+      <div className="mt-auto">
+        <div className="border-t border-border px-5 py-3 flex justify-between items-center bg-[#F8FAFC]">
+          <span className="text-xs text-muted font-medium">{bullets.length} highlights</span>
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-[11px] font-semibold tracking-wide hover:text-[#0F172A] transition-colors text-muted"
+          >
+            {open ? "Hide details −" : "Show details +"}
+          </button>
         </div>
-      )}
+
+        {open && (
+          <div className="border-t border-border px-5 py-4 bg-[#F8FAFC]">
+            <ol className="space-y-3">
+              {bullets.map((b, i) => (
+                <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                  <span className="text-muted font-mono text-xs mt-0.5 shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[#334155]">{b}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -139,7 +157,7 @@ export default function ProjectsPage() {
     <div>
       <div className="flex items-baseline gap-4 mb-5">
         <span className="text-xs text-muted font-mono">03</span>
-        <h2 className="font-display font-bold text-4xl">Projects</h2>
+        <h2 className="font-display font-bold text-4xl text-[#0F172A]">Projects</h2>
       </div>
       <hr className="border-border mb-8" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
